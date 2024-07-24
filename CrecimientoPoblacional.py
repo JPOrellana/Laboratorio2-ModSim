@@ -143,6 +143,8 @@ def main():
     get_x = euler.get_x(150)
     print(f"Día en el que hay cerca de 150 mariposas = {get_x}")
 
+    print(f"Valor de k = {k}")
+
 
 if __name__ == "__main__":
     main()
