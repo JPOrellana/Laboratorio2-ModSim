@@ -25,3 +25,6 @@ Número de mariposas en el día 12: 244.06998745346073
 Día en el que hay cerca de 150 mariposas = 7.999999999999986
 Valor de k = 0.36815561115209694
  ```
+
+### Aproximación de la solución
+![Figure_1.png](Figure_1.png)
