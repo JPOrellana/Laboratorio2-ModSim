@@ -39,7 +39,7 @@ class EulerMethod:
         slope = self.function(self.x0, self.y0)
         self.slopes.append(slope)
         while self.x0 < self.x_end:
-            y1 = self._get_y(slope, self.x0 + self.delta_x)
+            y1 = self._get_y(slope)
             x1 = self.x0 + self.delta_x
             slope = self.function(x1, y1)
             self.slopes.append(slope)
@@ -51,6 +51,28 @@ class EulerMethod:
             self.y_points.append(self.y0)
 
         self._show_graph(self.actual_function)
+
+    def get_y_value(self, x):
+        """
+        This function returns the aproximation to the y value at x
+        :param x:
+        :return:
+        """
+        # Find the index of the closest value in self.x_points to x
+        closest_index = min(range(len(self.x_points)), key=lambda i: abs(self.x_points[i] - x))
+        # Return the corresponding y value
+        return self.y_points[closest_index]
+
+    def get_x(self, y):
+        """
+        This function returns the aproximation to the x value at y
+        :param y:
+        :return:
+        """
+        # Find the index of the closest value in self.x_points to x
+        closest_index = min(range(len(self.x_points)), key=lambda i: abs(self.y_points[i] - y))
+        # Return the corresponding y value
+        return self.x_points[closest_index]
 
     def _show_graph(self, actual_function: callable = None):
         """
@@ -80,7 +102,6 @@ class EulerMethod:
         plt.show()
 
 
-# Ecuación para encontrar k
 def solved_model(k):
     """
     This is the solution to the logistic model, this function is used to find the value of k
@@ -115,6 +136,12 @@ def main():
 
     euler = EulerMethod(delta_x, x_end, x0, y0, equation)
     euler.solve()
+
+    get_y = euler.get_y_value(12)
+    print(f"Número de mariposas en el día 12: {get_y}")
+
+    get_x = euler.get_x(150)
+    print(f"Día en el que hay cerca de 150 mariposas = {get_x}")
 
 
 if __name__ == "__main__":
